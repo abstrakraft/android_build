@@ -23,7 +23,7 @@
 all_resource_files := $(foreach pkg, \
         $(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_PACKAGES), \
         $(PACKAGES.$(pkg).RESOURCE_FILES))
-values_resource_files := $(shell echo $(all_resource_files) | \
+values_resource_files := $(shell echo $(filter %/strings.xml %/arrays.xml,$(all_resource_files)) | \
 		tr -s / | \
 		tr " " "\n" | \
 		grep -E "\/values[^/]*/(strings.xml|arrays.xml)$$" | \
