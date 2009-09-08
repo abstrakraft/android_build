@@ -1236,6 +1236,7 @@ endef
 define transform-classes.jar-to-dex
 @echo "target Dex: $(PRIVATE_MODULE)"
 @mkdir -p $(dir $@)
+@eselect java-vm set user emul-linux-x86-java-1.6
 $(hide) $(DX) -JXms16M \
     -JXmx1536M \
     --dex --output=$@ \
@@ -1247,6 +1248,7 @@ $(hide) $(DX) -JXms16M \
 	    --dump-width=1000) \
     $(PRIVATE_DX_FLAGS) \
     $<
+@eselect java-vm set user sun-jdk-1.6
 endef
 
 # Create a mostly-empty .jar file that we'll add to later.
